@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-function App() {
+import LoginView from './views/LoginView'
+import RegisterView from './views/RegisterView'
+import ProfileView from './views/ProfileView'
+import NotFoundView from './views/NotFound'
+
+import { PATHS } from './constants'
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ height: '100%', width: '100%' }}>
+      <Router>
+        <Routes>
+          <Route path={PATHS['/login']} element={<LoginView />} />
+          <Route path={PATHS['/profile']} element={<ProfileView />} />
+          <Route path={PATHS['/register']} element={<RegisterView />} />
+          <Route path="*" element={<NotFoundView />} />
+        </Routes>
+      </Router>
     </div>
-  );
+  )
 }
 
 export default App;
